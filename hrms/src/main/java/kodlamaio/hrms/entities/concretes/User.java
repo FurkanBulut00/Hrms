@@ -35,5 +35,6 @@ public class User {
 
 	@Column(name = "password")
 	private String password;
+	  
 	
 }
