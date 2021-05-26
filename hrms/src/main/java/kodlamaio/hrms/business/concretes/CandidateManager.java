@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.business.abstracts.UserService;
-import kodlamaio.hrms.core.utilities.EmailValidationService;
-import kodlamaio.hrms.core.utilities.FakeMernisManager;
-import kodlamaio.hrms.core.utilities.FakeMernisService;
+import kodlamaio.hrms.core.adapters.abstracts.EmailValidationService;
+import kodlamaio.hrms.core.adapters.abstracts.FakeMernisService;
+import kodlamaio.hrms.core.adapters.concretes.FakeMernisManager;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
@@ -28,15 +28,18 @@ public class CandidateManager implements CandidateService {
 	private UserService userService;
 	private UserDao userDao;
 	private EmailValidationService emailValidationService;
+	private FakeMernisService fakeMernisService;
 	
 
 	@Autowired
-	public CandidateManager(CandidateDao candidateDao, UserService userService,UserDao userDao,EmailValidationService emailValidationService) {
+	public CandidateManager(CandidateDao candidateDao, UserService userService,UserDao userDao,EmailValidationService emailValidationService, FakeMernisService fakeMernisService) {
 		super();
 		this.candidateDao = candidateDao;
 		this.userService = userService;
 		this.userDao = userDao;
 		this.emailValidationService=emailValidationService;
+		this.fakeMernisService=fakeMernisService;
+		
 		
 	}
 
@@ -50,15 +53,21 @@ public class CandidateManager implements CandidateService {
 	public Result add(Candidate candidate) {
 		if(runAllRules(candidate)!=null) return runAllRules(candidate);
 		
+		if(!fakeMernisService.isNationalityIdValid(candidate.getNationalityId(),candidate.firstName,candidate.lastName,candidate.getBirthYear())) {
+			return new ErrorResult("Gecersiz TCK numarası.");
+		}
+		
 		if(!emailValidationService.isEmailValid(candidate.getEmail())) {
 			return new ErrorResult(" Gecersiz email formatı ");
 		}
 		if(!emailValidationService.isEmailValidonClick(candidate.getEmail())) {
 			return new ErrorResult(" Email dogrulama koduna tıklayınız. ");
+		}else {
+			this.candidateDao.save(candidate);
+			
+			return new SuccessResult("Candidate eklendi : ");
 		}
-		this.candidateDao.save(candidate);
 		
-		return new SuccessResult("Candidate eklendi : ");
 	}
 
 	private Result runAllRules(Candidate candidate) {

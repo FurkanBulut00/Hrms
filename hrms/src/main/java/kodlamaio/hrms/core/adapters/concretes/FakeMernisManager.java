@@ -1,7 +1,8 @@
-package kodlamaio.hrms.core.utilities;
+package kodlamaio.hrms.core.adapters.concretes;
 
 import org.springframework.stereotype.Service;
 
+import kodlamaio.hrms.core.adapters.abstracts.FakeMernisService;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 
@@ -15,6 +16,11 @@ public class FakeMernisManager implements FakeMernisService {
 			return false;
 		}
 		if(firstName.length()<2) {
+			System.out.println("İsim 2 haneden kücük olamaz");
+			return false;
+		}
+		if(lastName.length()<2) {
+			System.out.println("Soyisim 2 haneden kücük olamaz");
 			return false;
 		}
 		if(birthYear.length()<4) {

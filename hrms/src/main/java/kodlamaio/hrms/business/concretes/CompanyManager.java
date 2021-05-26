@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.CompanyService;
 import kodlamaio.hrms.business.abstracts.UserService;
+import kodlamaio.hrms.core.adapters.abstracts.EmailValidationService;
+import kodlamaio.hrms.core.adapters.abstracts.EmployeeValidationService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
@@ -21,12 +23,16 @@ public class CompanyManager implements CompanyService {
 	
 	private CompanyDao companyDao;
 	private UserService userService;
+	private EmailValidationService emailValidationService;
+	private EmployeeValidationService employeeValidationService;
 
 	@Autowired
-	public CompanyManager(CompanyDao companyDao,UserService userService) {
+	public CompanyManager(CompanyDao companyDao,UserService userService,EmailValidationService emailValidationService,EmployeeValidationService employeeValidationService) {
 		super();
 		this.companyDao = companyDao;
 		this.userService=userService;
+		this.emailValidationService=emailValidationService;
+		this.employeeValidationService=employeeValidationService;
 	}
 
 	@Override
@@ -49,8 +55,20 @@ public class CompanyManager implements CompanyService {
 	 * 
 	 * 
 	 */
-		this.companyDao.save(company);
-		return new SuccessResult("Company eklendi ");
+		if(!emailValidationService.isEmailValid(company.getEmail())) {
+			return new ErrorResult(" Gecersiz email formatı ");
+		}
+		if(!emailValidationService.isEmailValidonClick(company.getEmail())) {
+			return new ErrorResult(" Email dogrulama koduna tıklayınız. ");
+		}
+		if(!employeeValidationService.isValidateByEmployee(company)) {
+			return new ErrorResult("Calısan tarafından onaylanmadınız");
+		}
+		else {
+			this.companyDao.save(company);
+			return new SuccessResult("Company eklendi ");
+		}
+		
 	}
 	
 	public Result runAllRules(Company company) {
