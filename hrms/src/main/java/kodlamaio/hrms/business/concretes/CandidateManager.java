@@ -65,7 +65,7 @@ public class CandidateManager implements CandidateService {
 			return new ErrorResult(" Email dogrulama koduna tıklayınız. ");
 		}else {
 			this.candidateDao.save(candidate);
-			
+			System.out.println("eklendi");
 			return new SuccessResult("Candidate eklendi : ");
 		}
 		
