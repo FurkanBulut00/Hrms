@@ -38,6 +38,7 @@ public class CandidateManager implements CandidateService {
 		this.userService = userService;
 		this.userDao = userDao;
 		this.emailValidationService=emailValidationService;
+		
 		this.fakeMernisService=fakeMernisService;
 		
 		
