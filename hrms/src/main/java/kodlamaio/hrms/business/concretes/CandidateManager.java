@@ -62,6 +62,7 @@ public class CandidateManager implements CandidateService {
 			return new ErrorResult(" Gecersiz email formatı ");
 		}
 		if(!emailValidationService.isEmailValidonClick(candidate.getEmail())) {
+			System.out.println("eklendi");
 			return new ErrorResult(" Email dogrulama koduna tıklayınız. ");
 		}else {
 			this.candidateDao.save(candidate);
