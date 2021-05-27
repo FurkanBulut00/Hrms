@@ -111,6 +111,7 @@ public class CandidateManager implements CandidateService {
 			return new ErrorResult("Bu Tc kimlik no kullanılmaktadır. ");
 		}
 		return null;
+		
 	}
 
 }
