@@ -26,8 +26,10 @@ public class Candidate extends User {
 	@Column(name="first_name")
 	public String firstName;
 	
+	
 	@Column(name="last_name")
 	public String lastName;
+	
 	
 	@Column(name="national_id")
 	public String nationalityId;
@@ -36,7 +38,7 @@ public class Candidate extends User {
 	public String birthYear;
 
 	
-
+//.
 	
 	
 }
