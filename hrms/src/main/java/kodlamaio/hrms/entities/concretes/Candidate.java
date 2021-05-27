@@ -34,6 +34,8 @@ public class Candidate extends User {
 	@Column(name="national_id")
 	public String nationalityId;
 	
+	
+	
 	@Column(name="birth_year")
 	public String birthYear;
 
