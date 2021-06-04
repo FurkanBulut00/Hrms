@@ -11,31 +11,36 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.CandidateService;
+import kodlamaio.hrms.business.abstracts.CvService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.Candidate;
+import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.entities.concretes.dto.CvDto;
 
 @RestController
-@RequestMapping("/api/candidates")
-public class CandidatesController {
-	
+@RequestMapping("api/cvController")
+public class CvController {
+	private CvService cvService;
 	private CandidateService candidateService;
 
 	@Autowired
-	public CandidatesController(CandidateService candidateService) {
+	public CvController(CvService cvService,CandidateService candidateService) {
 		super();
-		this.candidateService = candidateService;
-	}
-	
-	@GetMapping("/getall")
-	public DataResult<List<Candidate>> getAll(){
-		return this.candidateService.getAll();
+		this.cvService = cvService;
+		this.candidateService=candidateService;
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody Candidate candidate) {
-		return this.candidateService.add(candidate);
+	public Result add(@RequestBody CvDto cvDto,int id) {
+		return this.cvService.add(cvDto, id);
 	}
+	
+	@GetMapping("/getByCandidateId")
+	public DataResult<CvDto>getByCandidateId(@RequestParam int id){
+		return this.candidateService.getByCandidateId(id);
+	
+	}
+
+	
 	
 }
