@@ -2,6 +2,7 @@ package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.CandidateService;
@@ -17,9 +18,9 @@ import kodlamaio.hrms.entities.concretes.CvLink;
 public class CvLinkManager implements CvLinkService {
 
 	private CvLinkDao cvLinkDao;
-	private CandidateService candidateService;
 	
-	public CvLinkManager(CvLinkDao cvLinkDao,CandidateService candidateService) {
+	@Autowired
+	public CvLinkManager(CvLinkDao cvLinkDao) {
 		super();
 		this.cvLinkDao = cvLinkDao;
 	}

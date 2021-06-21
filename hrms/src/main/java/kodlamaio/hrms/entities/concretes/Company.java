@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -25,7 +26,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @PrimaryKeyJoinColumn(name="company_id")
 @EqualsAndHashCode(callSuper = true)
-@JsonIgnoreProperties ({"hibernateLazyInitializer","handler","jobAdvert"})
+//@JsonIgnoreProperties ({"hibernateLazyInitializer","handler","jobAdvert"})
 public class Company extends User {
 	
 	
@@ -38,6 +39,7 @@ public class Company extends User {
 	@Column(name="phone_number")
 	private  String phoneNumber;
 	
+	@JsonIgnore //
 	@OneToMany(mappedBy = "company")
 	private List<JobAdvert> jobAdvert;
 

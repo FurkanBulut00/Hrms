@@ -106,6 +106,12 @@ public class CompanyManager implements CompanyService {
 		}
 		return null;
 	}
+
+	@Override
+	public DataResult<Company> getByCompanyId(int id) {
+		return new SuccessDataResult<Company>(this.companyDao.findById(id));
+		
+	}
 		
 	
 }

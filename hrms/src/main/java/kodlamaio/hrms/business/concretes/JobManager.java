@@ -53,19 +53,24 @@ public class JobManager implements JobService {
 	
 	
 	private Result fieldController(Job job) {
-		if(job.getJob()==null) {
+		if(job.getJobTitle()==null) {
 			return new ErrorResult("Lütfen alanları doldurunuz");
 		}
-		if(job.getJob().equals("")) {
+		if(job.getJobTitle().equals("")) {
 			return new ErrorResult("Lütfen alanları doldurunuz");
 		}
 		return null;
 	}
 	private Result jobController(Job job) {
-		if(jobDao.findByJob(job.getJob())!=null) {
+		if(jobDao.findByJobId(job.getJobId())!=null) {
 			return new ErrorResult("Bu iş pozisyonu halihazirda var.");
 		}
 		return null;
+	}
+
+	@Override
+	public DataResult<Job> getByJobId(int id) {
+	return new SuccessDataResult<Job>(this.jobDao.findByJobId(id));
 	}
 
 }

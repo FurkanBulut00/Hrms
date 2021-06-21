@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -48,17 +50,35 @@ public class JobAdvert {
 	@Column(name="is_active")
 	private boolean isActive;
 	
+	@Column(name="is_confirmed")
+	private boolean isConfirmed;
+	
+	@Column(name="confirm_request")
+	private boolean confirmRequest;
+	
 	@ManyToOne()
+	//@JsonIgnore 
 	@JoinColumn(name="job_id")
 	private Job job;
 	
 	@ManyToOne()
+	//@JsonIgnore 
 	@JoinColumn(name="city_id")
 	private City city;
 	
 	@ManyToOne()
+	//@JsonIgnore 
 	@JoinColumn(name="company_id")
 	private Company company;
 	
+	@ManyToOne()
+	//@JsonIgnore 
+	@JoinColumn(name="job_advert_schedule_id")
+	private JobAdvertSchedule jobAdvertSchedule;
+	
+	@ManyToOne()
+	//@JsonIgnore 
+	@JoinColumn(name="job_advert_work_style_id")
+	private JobAdvertWorkStyle jobAdvertWorkStyle;
 	
 }
