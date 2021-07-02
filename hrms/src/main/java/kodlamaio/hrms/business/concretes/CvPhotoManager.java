@@ -29,10 +29,10 @@ public class CvPhotoManager implements CvPhotoService {
 		this.imageUploadService= imageUploadService;
 	}
 
-	@Override
-	public DataResult<List<CvPhoto>> getAllByCandidateId(int id) {
-		return new SuccessDataResult<List<CvPhoto>>(this.cvPhotoDao.getAllByCandidateId(id), "Success");
-	}
+//	@Override
+//	public DataResult<List<CvPhoto>> getAllByCandidateId(int id) {
+//		return new SuccessDataResult<List<CvPhoto>>(this.cvPhotoDao.getAllByCandidateId(id), "Success");
+//	}
 
 	@Override
 	public Result add(CvPhoto cvPhoto,MultipartFile imageFile) {
@@ -56,6 +56,12 @@ public class CvPhotoManager implements CvPhotoService {
 	public Result addAll(List<CvPhoto> cvPhotos) {
 		this.cvPhotoDao.saveAll(cvPhotos);
 		return new SuccessResult("Success");
+	}
+
+	@Override
+	public DataResult<List<CvPhoto>> getAllByCandidateId(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

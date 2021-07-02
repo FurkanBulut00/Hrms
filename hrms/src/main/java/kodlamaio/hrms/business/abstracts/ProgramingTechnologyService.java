@@ -5,16 +5,19 @@ import java.util.List;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.ProgramingTechnology;
+import kodlamaio.hrms.entities.concretes.dto.ProgramingTechnologyDto;
 
 public interface ProgramingTechnologyService {
 
-	DataResult<List<ProgramingTechnology>> getAllByCandidateId(int id);
+	DataResult<List<ProgramingTechnology>> getAllByCv_CvId(int cvId);
 
-	Result add(ProgramingTechnology programingTechnology);
+	Result add(ProgramingTechnologyDto programingTechnologyDto);
 
 	Result addAll(List<ProgramingTechnology> programingTechnologies);
 
-	Result update(ProgramingTechnology programingTechnology);
+	Result update(ProgramingTechnologyDto programingTechnologyDto,int id);
 
-	Result delete(ProgramingTechnology programingTechnology);
+	Result delete(int id);
+	
+	DataResult<ProgramingTechnology> getById(int id);
 }

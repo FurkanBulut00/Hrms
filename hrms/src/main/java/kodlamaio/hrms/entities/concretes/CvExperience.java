@@ -1,4 +1,4 @@
-package kodlamaio.hrms.entities.concretes;
+	package kodlamaio.hrms.entities.concretes;
 
 import java.time.LocalDate;
 
@@ -48,15 +48,19 @@ public class CvExperience {
 	@Column(name="cv_experience_name")
 	private String cvExperienceName;
 	
-	@OneToOne()
-	@JsonIgnore()
-	@JoinColumn(name="company_id")
-	private Company company;
-	
 	@ManyToOne()
-	@JsonIgnore()
-	@JoinColumn(name="user_id")
-	private Candidate candidate;
+	@JoinColumn(name="cv_id")
+	private Cv cv;
+	
+// 2	@OneToOne()
+//	@JsonIgnore()
+//	@JoinColumn(name="company_id")
+//	private Company company;
+//	
+// 2	@ManyToOne()
+//	@JsonIgnore()
+//	@JoinColumn(name="user_id")
+//	private Candidate candidate;
 	
 	
 	

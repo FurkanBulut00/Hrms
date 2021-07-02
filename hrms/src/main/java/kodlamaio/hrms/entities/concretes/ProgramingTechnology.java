@@ -33,8 +33,12 @@ public class ProgramingTechnology {
 	@Column(name="programing_technology_name")
 	private String programingTechnology;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JsonIgnore()
-	@JoinColumn(name="user_id")
-	private Candidate candidate;
+	@ManyToOne()
+	@JoinColumn(name="cv_id")
+	private Cv cv;
+	
+// 2	@ManyToOne(cascade = CascadeType.ALL)
+//	@JsonIgnore()
+//	@JoinColumn(name="user_id")
+//	private Candidate candidate;
 }

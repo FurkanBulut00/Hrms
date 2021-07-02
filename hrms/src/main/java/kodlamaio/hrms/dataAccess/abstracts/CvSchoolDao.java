@@ -9,6 +9,7 @@ import kodlamaio.hrms.entities.concretes.CvSchool;
 
 public interface CvSchoolDao extends JpaRepository<CvSchool,Integer> {
 
-	List<CvSchool> getAllByCandidateId(int id);
-	List<CvSchool> getAllByCandidateIdOrderBySchoolGraduationDateDesc(int id);
+	List<CvSchool> getAllByCv_CvId(int cvId);
+	List<CvSchool> getAllByCv_CvIdOrderBySchoolGraduationDateDesc(int id);
+	CvSchool findById(int id);
 }

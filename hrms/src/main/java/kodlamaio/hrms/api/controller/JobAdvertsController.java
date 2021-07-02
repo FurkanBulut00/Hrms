@@ -49,7 +49,7 @@ public class JobAdvertsController {
 		return this.jobAdvertService.getAllActiveJobAdvertByCompany(id);
 	}
 	
-	@GetMapping("getAllByJobAdvertIsConfirmedFalseAndConfirmRequestTrue")
+	@GetMapping("/getAllByJobAdvertIsConfirmedFalseAndConfirmRequestTrue")
 	public DataResult<List<JobAdvert>> getAllByJobAdvertIsConfirmedFalseAndConfirmRequestTrue(){
 		return this.jobAdvertService.getAllByJobAdvertIsConfirmedFalseAndConfirmRequestTrue();
 	}

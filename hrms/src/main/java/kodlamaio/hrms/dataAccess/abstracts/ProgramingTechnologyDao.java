@@ -8,5 +8,6 @@ import kodlamaio.hrms.entities.concretes.ProgramingTechnology;
 
 public interface ProgramingTechnologyDao extends JpaRepository<ProgramingTechnology,Integer> {
 
-	List<ProgramingTechnology> getAllByCandidateId(int id);
+	List<ProgramingTechnology> getAllByCv_CvId(int cvId);
+	ProgramingTechnology findById(int id);
 }

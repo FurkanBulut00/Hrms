@@ -6,18 +6,21 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.CvSchool;
 import kodlamaio.hrms.entities.concretes.dto.CvDto;
+import kodlamaio.hrms.entities.concretes.dto.CvSchoolDto;
 
 public interface CvSchoolService {
 
-	DataResult<List<CvSchool>> getAllByCandidateId(int id);
+	DataResult<List<CvSchool>> getAllByCv_CvId(int cvId);
 
-	DataResult<List<CvSchool>> getAllByCandidateIdOrderBySchoolGraduationDateDesc(int id);
+	DataResult<List<CvSchool>> getAllByCv_CvIdOrderBySchoolGraduationDateDesc(int cvId);
 
-	Result add(CvSchool cvSchool);
+	Result add(CvSchoolDto cvSchoolDto);
 
 	Result addAll(List<CvSchool> cvSchools);
 
-	Result update(CvSchool cvSchool);
+	Result update(CvSchoolDto cvSchoolDto,int id);
 
-	Result delete(CvSchool cvSchool);
+	Result delete(int id);
+	
+	DataResult<CvSchool> getById(int id);
 }

@@ -40,6 +40,10 @@ public class CvLanguage {
 	@Column(name="language_name")
 	private String languageName;
 	
+	@ManyToOne()
+	@JoinColumn(name="cv_id")
+	private Cv cv;
+	
 	
 	
 	//@Column(name="languages_id")
@@ -59,11 +63,11 @@ public class CvLanguage {
 //	@JoinColumn(name="languages_level_id")
 //	private LanguageLevel languageLevel;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JsonIgnore()
-	@JoinColumn(name="user_id")
-	private Candidate candidate;
-	
+// 2	@ManyToOne(cascade = CascadeType.ALL)
+//	@JsonIgnore()
+//	@JoinColumn(name="user_id")
+//	private Candidate candidate;
+//	
 	
 	
 	

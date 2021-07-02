@@ -24,27 +24,31 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "cv")
+@Table(name = "cv_details")
 public class CvDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "cv_id")
-	private int cvId;
+	@Column(name = "cv_details_id")
+	private int cvDetailsId;
 
 //	@Column(name = "candidate_id")
 //	private int candidateId;
 
 	@Column(name = "details")
-	private String details;
+	private String details;	
+	
+	@ManyToOne()
+	@JoinColumn(name="cv_id")
+	private Cv cv;
 
-	@Column(name = "is_active")
-	private boolean isActive=true;
-
-	@Column(name = "last_update_date")
-	private LocalDate lastUpdateDate;
-
-	@Column(name = "made_date")
-	private LocalDate madeDate;
+// 2	@Column(name = "is_active")
+//	private boolean isActive=true;
+//
+// 2	 @Column(name = "last_update_date")
+//	private LocalDate lastUpdateDate;
+//
+// 2	 @Column(name = "made_date")
+//	private LocalDate madeDate;
 
 //	@OneToMany(mappedBy = "cv")
 //	private List<CvLanguage> cvLanguage;
@@ -64,9 +68,10 @@ public class CvDetails {
 //	@OneToMany(mappedBy = "cv")
 //	private List<ProgramingTechnology> programingTechnology;
 //
-	@ManyToOne
-	@JsonIgnore()
-	@JoinColumn(name = "user_id")
-	private Candidate candidate;
+	
+// 2	@ManyToOne
+//	@JsonIgnore()
+//	@JoinColumn(name = "user_id")
+//	private Candidate candidate;
 
 }

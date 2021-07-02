@@ -9,5 +9,6 @@ import kodlamaio.hrms.entities.concretes.CvLink;
 
 public interface CvLinkDao extends JpaRepository<CvLink,Integer> {
 		
-	List<CvLink> getAllByCandidateId(int id);
+	List<CvLink> getAllByCv_CvId(int cvId);
+	CvLink findById(int id);
 }

@@ -37,35 +37,25 @@ public class CandidateManager implements CandidateService {
 	private UserDao userDao;
 	private EmailValidationService emailValidationService;
 	private FakeMernisService fakeMernisService;
-	private CvDetailsService cvDetailsService;
-	private CvExperienceService cvExperienceService;
-	private CvLanguageService cvLanguageService;
-	private CvLinkService cvLinkService;
-	private CvPhotoService cvPhotoService;
-	private CvSchoolService cvSchoolService;
-	private ProgramingTechnologyService programingTechnologyService;
+//	private CvDetailsService cvDetailsService;
+//	private CvExperienceService cvExperienceService;
+//	private CvLanguageService cvLanguageService;
+//	private CvLinkService cvLinkService;
+//	private CvPhotoService cvPhotoService;
+//	private CvSchoolService cvSchoolService;
+//	private ProgramingTechnologyService programingTechnologyService;
 
+	
+	
 	@Autowired
 	public CandidateManager(CandidateDao candidateDao, UserService userService, UserDao userDao,
-			EmailValidationService emailValidationService, FakeMernisService fakeMernisService,CvDetailsService cvDetailsService,
-			CvExperienceService cvExperienceService, CvLanguageService cvLanguageService, CvLinkService cvLinkService,
-			CvPhotoService cvPhotoService, CvSchoolService cvSchoolService,
-			ProgramingTechnologyService programingTechnologyService) {
+			EmailValidationService emailValidationService, FakeMernisService fakeMernisService) {
 		super();
 		this.candidateDao = candidateDao;
 		this.userService = userService;
 		this.userDao = userDao;
 		this.emailValidationService = emailValidationService;
-		this.cvDetailsService = cvDetailsService;
-		this.cvExperienceService = cvExperienceService;
-		this.cvLanguageService = cvLanguageService;
-		this.cvLinkService = cvLinkService;
-		this.cvPhotoService = cvPhotoService;
-		this.cvSchoolService = cvSchoolService;
-		this.programingTechnologyService = programingTechnologyService;
-
 		this.fakeMernisService = fakeMernisService;
-
 	}
 
 	@Override
@@ -142,21 +132,29 @@ public class CandidateManager implements CandidateService {
 
 	@Override
 	public DataResult<Candidate> getById(int id) {
-		return new SuccessDataResult<Candidate>(this.candidateDao.findById(id).get(), "Success");
+		Candidate candidate = candidateDao.findById(id);
+		return new SuccessDataResult<Candidate>(candidate);
+		
 	}
 
 	@Override
 	public DataResult<CvDto> getByCandidateId(int id) {
-		CvDto cvDto = new CvDto();
-		cvDto.setCandidate(this.getById(id).getData());
-		cvDto.setCvDetails(this.cvDetailsService.getAllByCandidateId(id).getData());
-		cvDto.setCvExperience(this.cvExperienceService.getAllByCandidateIdOrderByEndDateDesc(id).getData());
-		cvDto.setCvLanguage(this.cvLanguageService.getAllByCandidateId(id).getData());
-		cvDto.setCvLink(this.cvLinkService.getAllByCandidateId(id).getData());
-		cvDto.setCvPhoto(this.cvPhotoService.getAllByCandidateId(id).getData());
-		cvDto.setCvSchool(this.cvSchoolService.getAllByCandidateIdOrderBySchoolGraduationDateDesc(id).getData());
-		cvDto.setProgramingTechnology(this.programingTechnologyService.getAllByCandidateId(id).getData());
-		return new SuccessDataResult<>(cvDto,"Success");
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+//	@Override
+//	public DataResult<CvDto> getByCandidateId(int id) {
+//		CvDto cvDto = new CvDto();
+//		cvDto.setCandidate(this.getById(id).getData());
+//		cvDto.setCvDetails(this.cvDetailsService.getAllByCandidateId(id).getData());
+//		cvDto.setCvExperience(this.cvExperienceService.getAllByCandidateIdOrderByEndDateDesc(id).getData());
+//		cvDto.setCvLanguage(this.cvLanguageService.getAllByCandidateId(id).getData());
+//		cvDto.setCvLink(this.cvLinkService.getAllByCandidateId(id).getData());
+//		cvDto.setCvPhoto(this.cvPhotoService.getAllByCandidateId(id).getData());
+//		cvDto.setCvSchool(this.cvSchoolService.getAllByCandidateIdOrderBySchoolGraduationDateDesc(id).getData());
+//		cvDto.setProgramingTechnology(this.programingTechnologyService.getAllByCandidateId(id).getData());
+//		return new SuccessDataResult<>(cvDto,"Success");
+//	}
 
 }

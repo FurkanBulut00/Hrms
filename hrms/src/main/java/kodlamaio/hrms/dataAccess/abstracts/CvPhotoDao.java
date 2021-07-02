@@ -9,5 +9,5 @@ import kodlamaio.hrms.entities.concretes.CvPhoto;
 public interface CvPhotoDao extends JpaRepository<CvPhoto,Integer> {
 
 	
-	List<CvPhoto> getAllByCandidateId(int id);
+	//List<CvPhoto> getAllByCandidateId(int id);
 }

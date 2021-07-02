@@ -52,9 +52,13 @@ public class CvSchool {
 	private String schoolDepartment;
 	
 	@ManyToOne()
-	@JsonIgnore()
-	@JoinColumn(name="user_id")
-	private Candidate candidate;
+	@JoinColumn(name="cv_id")
+	private Cv cv;
 	
+// 2	@ManyToOne()
+//	@JsonIgnore()
+//	@JoinColumn(name="user_id")
+//	private Candidate candidate;
+//	
 	
 }

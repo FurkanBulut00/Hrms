@@ -2,6 +2,7 @@ package kodlamaio.hrms.entities.concretes;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +26,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @PrimaryKeyJoinColumn(name = "user_id")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","cv"})
 @EqualsAndHashCode(callSuper = false)
 public class Candidate extends User {
 
@@ -47,33 +50,38 @@ public class Candidate extends User {
 		this.nationalityId = nationalityId;
 		this.birthYear = birthYear;
 	}
+		
+		@OneToMany(mappedBy="candidate" , cascade = CascadeType.ALL)
+		private List<Cv> cv;
 
-	@OneToMany(mappedBy = "candidate")
-	@JsonIgnore()
-	private List<CvLanguage> cvLanguage;
-
-	@OneToMany(mappedBy = "candidate")
-	@JsonIgnore()
-	private List<CvExperience> cvExperience;
-
-	@OneToMany(mappedBy = "candidate")
-	@JsonIgnore()
-	private List<CvLink> cvLink;
-
-	@OneToMany(mappedBy = "candidate")
-	@JsonIgnore()
-	private List<CvPhoto> cvPhoto;
-
-	@OneToMany(mappedBy = "candidate")
-	@JsonIgnore()
-	private List<CvSchool> cvSchool;
-
-	@OneToMany(mappedBy = "candidate")
-	@JsonIgnore()
-	private List<ProgramingTechnology> programingTechnology;
+//	2 @OneToMany(mappedBy = "candidate")
+//	@JsonIgnore()
+//	private List<CvLanguage> cvLanguage;
+//
+//	@OneToMany(mappedBy = "candidate")
+//	@JsonIgnore()
+//	private List<CvExperience> cvExperience;
+//
+//	@OneToMany(mappedBy = "candidate")
+//	@JsonIgnore()
+//	private List<CvLink> cvLink;
+//
+//	@OneToMany(mappedBy = "candidate")
+//	@JsonIgnore()
+//	private List<CvPhoto> cvPhoto;
+//
+//	@OneToMany(mappedBy = "candidate")
+//	@JsonIgnore()
+//	private List<CvSchool> cvSchool;
+//
+//	@OneToMany(mappedBy = "candidate")
+//	@JsonIgnore()
+//	private List<ProgramingTechnology> programingTechnology;
+//	
+//	@OneToMany(mappedBy = "candidate")
+//	@JsonIgnore()
+//	private List<CvDetails> cvDetails;
 	
-	@OneToMany(mappedBy = "candidate")
-	@JsonIgnore()
-	private List<CvDetails> cvDetails;
+	
 
 }
